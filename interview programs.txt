@@ -1,0 +1,785 @@
+CONTENTS:
+----------
+1.ADD AND SUB WITHOUT OPERATOR
+2.HASHMAP ITERATOR
+3.SECOND AND THIRD LARGEST
+4.MERGE ARRAY
+5.ARMSTRONG NUMBER
+6.COUNT OF DUPLICATE IN ARRAY AND PRINTING DUPLICATES
+7.ASCENDING DESCENDING
+8.NUMBER OF LETTERS
+9.NUMBER OF WORDS
+10.NUMBER OF CAPITAL,SMALL,SPECIAL CHARACTERS
+11.FACTORIAL
+12.FIBONACCI
+13.NUMBER OF TIMES PARTICULAR LETTER REPEATED AND PRINT THE REPEATEDS
+14.FINDING LARGEST AND MINIMUM NUMBER IN A GIVEN ARRAY
+15.MULTIPLICATION
+16.NUMBERS TO WORDS
+17.ODD AND EVEN
+18.PALINDROME
+19.PRIME
+20.REVERSE STRING
+21.ROMAN TO INTEGER
+22.SWAPPING
+23.NUMBER OF TIMES WORD REPEATED AND PRINTING THE REPEATEDS
+----------------------------------------------------------------------------------------------------------------------------
+1.ADD AND SUB WITHOUT OPERATOR:
+------------------------------
+
+public class Addsubwithoutoperator {
+	
+	private static void addwithout() {
+
+		int a = 12;
+		int b = 24;
+		int c = a-(-b);
+		System.out.println(c);
+	}
+
+	private static void subwithoutoperator() {
+
+		int a = 12;
+		int b =24;
+		int c = a+~b+1;
+		System.out.println(c);
+	}
+	public static void main(String[] args) {
+		addwithout();
+		subwithoutoperator();
+	}
+}
+---------------------------------------------------------------------------------------------------------
+2.HASHMAP ITERATOR:
+-----------------
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+public class Hashmapiterator {
+
+	
+	public static void main(String[] args) {
+		
+		Map<Integer,String> m = new HashMap<>();
+		m.put(1, "one");
+		m.put(2, "two");
+		m.put(3, "three");
+		
+		Set<Entry<Integer, String>> entrySet = m.entrySet();
+		
+		 Iterator<Entry<Integer, String>> iterator = entrySet.iterator();
+		 
+		 while (iterator.hasNext()) {
+			Entry<Integer, String> next = iterator.next();
+			System.out.println("key: " +next.getKey() +" value: " +next.getValue());
+		}
+	}
+}
+
+-------------------------------------------------------------------------------------------------------------
+3.SECOND AND THIRD LARGEST:
+-------------------------
+
+public class Secondandthirdlargest {
+
+	
+	public static void main(String[] args) {
+		
+		int a[]= {8,9,56,54,3,90};
+		int largest =0;
+		int secondlargest = 0;
+		int thirdlargest=0;
+		for (int i = 0; i < a.length; i++) {
+			if (a[i]>largest) {
+				thirdlargest=secondlargest;
+				secondlargest=largest;
+				largest =a[i];
+			}
+			else if (a[i]>secondlargest) {
+				thirdlargest=largest;
+				secondlargest= a[i];
+			}
+			else if (a[i]>thirdlargest) {
+				thirdlargest=a[i];
+			}
+		}
+		
+		System.out.println("third largest: "+thirdlargest);
+		
+		
+		
+	}
+}
+----------------------------------------------------------------------------------------------------------------
+4.MERGE ARRAY:
+-----------
+import java.util.Arrays;
+
+public class Mergearray {
+     
+	public static void main(String[] args)   
+	{
+		
+	int[] firstArray = {23,45,12,78,4,90,1};        //source array  
+	
+	int[] secondArray = {77,11,45,88,32,56,3};  //destination array 
+	
+	int fal = firstArray.length;        //determines length of firstArray 
+	
+	int sal = secondArray.length;   //determines length of secondArray  
+	
+	int[] result = new int[fal + sal];  //resultant array of size first array and second array 
+	
+	System.arraycopy(firstArray, 0, result, 0, fal); 
+	
+	System.arraycopy(secondArray, 0, result, fal, sal); 
+	
+	System.out.println(Arrays.toString(result));    //prints the resultant array  
+	}  
+}
+-------------------------------------------------------------------------------------------------------------------------
+5.ARMSTRONG NUMBER:
+------------------
+import java.util.Scanner;
+
+public class Armstrongsimplified {
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		System.out.println("enter the num");
+		int num = sc.nextInt();
+		
+		System.out.println("enter power");
+		int power = sc.nextInt();
+		
+	int n = num;
+	int temp= n;
+	int r;
+	double sum=0;
+	double c;
+	
+	while (n>0) {
+	    r=n%10;
+	    n=n/10;
+	    c=Math.pow(r, power);
+	    sum=sum+c;
+	}
+	
+	
+	if (temp==sum) {
+		System.out.println(temp+" " +":armstrong num");
+	}
+	
+	
+	else {
+		System.out.println("not an armstrong num");
+	}
+
+}
+}
+--------------------------------------------------------------------------------------------------------------
+6.COUNT OF DUPLICATE IN ARRAY AND PRINTING DUPLICATES:
+----------------------------------------------------
+import java.util.ArrayList;
+import java.util.List;
+
+public class Arraycounts {
+	public static void main(String[] args) {
+		int a[]= {1,1,1,2,3,4,4,5,6,7,8,9,5,9};
+		int f[]= new int[a.length];
+
+		for (int i = 0; i < a.length; i++) {
+			int count =1;
+			for (int j = i+1; j < a.length; j++) {
+				
+				if (a[i]==a[j]) {
+					count++;
+					f[j]=-1;
+				}
+			}
+			if (f[i]!=-1) {
+				f[i]=count;
+			}
+		}
+		int b[]=new int[a.length];
+		int j =0;
+		int dup=0;
+		for (int i = 0; i < f.length; i++) {
+			if (f[i]>1) {
+				dup=dup+1;
+				System.out.println(a[i]+" occured " +f[i]+" times ");
+				b[j]=a[i];
+				j++;
+			}
+		}
+		System.out.println("no of duplicates: " +dup);
+		List<Object> li= new ArrayList<>();
+		for (int i = 0; i < b.length; i++) {
+			if (b[i]>0) {
+				li.add(b[i]);
+				System.out.print(b[i]+",");
+			}
+		}
+		System.out.println(li);
+	}
+}
+-------------------------------------------------------------------------------------------------------
+7.ASCENDING DESCENDING:
+------------------------
+public class Ascending {
+	
+	public static void main(String[] args) {
+		
+		int a[] = {9,0,3,1,5,4};
+		int temp;
+		for (int i = 0; i < a.length; i++) {
+			for (int j = i+1; j < a.length; j++) {
+				if (a[i]>a[j]) {
+					temp = a[i];
+					a[i]=a[j];
+					a[j]=temp;
+					
+				}
+				
+			}
+			
+		}
+		for (int j = 0; j < a.length; j++) {
+			System.out.println(a[j]);
+			
+		}
+	}
+
+}
+--------------------------------------------------------------------------------------------------------
+8.NUMBER OF LETTERS:
+------------------
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+public class Countofeachletter {
+	public static void main(String[] args) {
+		
+		String s = "i am from chennai";
+		Map<Object,Object> m=new LinkedHashMap<>();
+		for (int i = 0; i < s.length(); i++) {
+			
+			m.put(i+1, s.charAt(i));
+		}
+		
+		System.out.println(m);
+		
+	}
+
+}
+---------------------------------------------------------------------------------------------------------
+9.NUMBER OF WORDS:
+-------------------
+import java.util.LinkedHashMap;
+
+import java.util.Map;
+
+public class Countofeachword {
+	public static void main(String[] args) {
+		String s="i am from pazhavanthangal";
+		String[] split = s.split(" ");
+		Map<Object,Object> m=new LinkedHashMap<>();
+		for (int i = 0; i < split.length; i++) {
+			
+			m.put(i+1, split[i]);
+		}
+		System.out.println(m);
+	}
+
+}
+------------------------------------------------------------------------------------------------------------
+10.NUMBER OF CAPITAL,SMALL,SPECIAL CHARACTERS:
+--------------------------------------------
+public class Countofletters {
+	
+	public static void main(String[] args) {
+		
+	String s="I AM from PAZHAvanthangal@#$%";
+	int caps =0;
+	int small = 0;
+	int special=0;
+	for (int i = 0; i < s.length(); i++) {
+		if (s.charAt(i)>='A' && s.charAt(i)<='Z') {
+			 caps = caps+1;
+		}
+		else if(s.charAt(i)>='a' && s.charAt(i)<='z') {
+			
+			small = small +1;
+		}
+		
+		else {
+			special = special +1;
+		}
+		
+	}
+	
+	System.out.println(caps);
+	System.out.println(small);
+	System.out.println(special);
+ }
+
+}
+------------------------------------------------------------------------------------------------------------------
+11.FACTORIAL:
+----------
+import java.util.Scanner;
+
+public class Factorial {
+	
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("enter num");
+		int num = sc.nextInt();
+		int count = 1;
+		for (int i = 1; i <=num; i++) {
+			 count = count *i;
+			
+		}
+		System.out.println(count);
+		
+	}
+
+}
+------------------------------------------------------------------------------------------------------------------------
+12.FIBONACCI:
+----------
+import java.util.Scanner;
+
+public class Fibonacci {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("enter num");
+		int num = sc.nextInt();
+		
+		int k=0,a=1,b=1;
+		
+		System.out.print("1  1");
+		
+		while (k<=num) {
+			k=a+b;
+			System.out.print("  " +k +" ");
+			a=b;
+			b=k;
+			
+			
+			
+		}
+	}
+
+}
+-----------------------------------------------------------------------------------------------------------------------
+13.NUMBER OF TIMES PARTICULAR LETTER REPEATED AND PRINT THE REPEATEDS:
+-------------------------------------------------------------------
+public class Lettersrepeated {
+	public static void main(String[] args) {
+		String s = "welcome god god god here here here where";
+		int b []=new int[s.length()];	
+	    for (int i = 0; i < s.length(); i++) {
+	    	int count =1;
+	    	for (int j = i+1; j < s.length(); j++) {
+				if (s.charAt(i)==s.charAt(j)) {
+					count++;
+					b[j]=-1;
+				}
+	    	}
+	    	if (b[i]!=-1) {
+				b[i]=count;
+			}
+		}	
+	    int dup =0;
+	    char c[] = new char[b.length];
+	    int j=0;
+	    for (int i = 0; i < b.length; i++) {
+			if (b[i]>1) {
+				dup=dup+1;
+				System.out.println(s.charAt(i)+" ocuured "+b[i]+" times ");
+				c[j]=s.charAt(i);
+				j++;
+			}
+		}
+	     System.out.println("no of duplicates: "+dup);
+	    System.out.println("duplicates letters are: ");
+	    for (int i = 0; i < c.length; i++) {
+	    	if (c[i]!=0) {
+				System.out.print(c[i]+ ",");
+			}
+		}
+	 }
+}
+----------------------------------------------------------------------------------------------------------------------------
+14.FINDING LARGEST AND MINIMUM NUMBER IN A GIVEN ARRAY:
+------------------------------------------------------
+public class Maxnum {
+	private static void maxnum() {
+		int a[] = {300,0,200,800,1000};
+		int max = a[0];
+		for (int i = 0; i < a.length; i++) {
+			if (a[i]>max) {
+				max=a[i];
+				
+			}
+			
+		}
+		System.out.println("maximum num :" +max);
+	}
+	
+	
+	private static void minnum() {
+		int a[] = {300,0,200,800,1000};
+		int min = a[0];
+		for (int i = 0; i < a.length; i++) {
+			if (a[i]<min) {
+				min=a[i];
+				
+			}
+			
+		}
+		System.out.println("minimum num :" +min);
+	}
+	
+	
+	
+	public static void main(String[] args) {
+		maxnum();
+		minnum();
+		
+	}
+
+}
+--------------------------------------------------------------------------------------------------------------------
+15.MULTIPLICATION:
+---------------
+import java.util.Scanner;
+
+public class Multiplication {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("enter num");
+		int num = sc.nextInt();
+		int num2 = sc.nextInt();
+		int a =num;
+	   for (int i = 1; i < num2; i++) {
+		 int  c=a*i;
+		 System.out.println(a+"*"+i+"="+c );
+		
+	} 
+  }
+
+}
+------------------------------------------------------------------------------------------------------------------------
+16.NUMBERS TO WORDS:
+------------------
+public class Numtowords {
+	
+	public static void numbertowords(char num[]) {
+               int len = num.length;
+               if (len==0) {
+				System.out.println("the string is empty");
+				return;
+			    }
+		        if (len>4) {
+					System.out.println("the given num has more than 4 digits");
+					return;
+				}
+		        String [] onedigit = new String[]{"zero","one", "two","three","fout","five","six","seven","eight","nine"};
+		        String [] twodigits = new String[] {"","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen"};
+		        String [] multipleoftens = new String [] {"","","twenty","thirty","forty","fifty","sixty","seventy","eighty","ninety"};
+	            String [] poweroftens = new  String[] {"hundred","thounsand"};
+	            System.out.println(String.valueOf(num)+": ");
+	            if (len==1) {
+					System.out.println(onedigit[num[0]-'0']);
+					return;
+				}
+	            int x =0;
+	            while (x<num.length) {
+					if (len>=3) {
+						if (num[x]-'0' !=0) {
+							System.out.print(onedigit[num[0]-'0']+" ");
+							System.out.print(poweroftens[len-3]+" ");
+						}
+						--len;
+					}
+					else {
+						if (num[x]-'0'==1) {
+							int sum =num[x]-'0'+num[x+1]-'0';
+							System.out.println(twodigits[sum]);
+							return;
+						}
+						else if (num[x]-'0'==2 && num[x+1]-'0'==0) {
+							System.out.print("twenty");
+							return;
+						}
+						else {
+							int i=(num[x]-'0');
+							if (i>0) 
+								System.out.print(multipleoftens[i]+" ");
+							else
+								System.out.print("");
+							++x;
+							if (num[x]-'0' !=0) 
+								System.out.print(onedigit[num[x]-'0']);
+							}
+					}
+					++x;
+			        }
+	                }
+	public static void main(String[] args) {
+            numbertowords("1100".toCharArray());
+	              }
+               }
+----------------------------------------------------------------------------------------------------------------------------
+17.ODD AND EVEN:
+---------------
+import java.util.Scanner;
+
+public class Oddeven {
+	
+	private static void odd() {
+      int sum=0,count=0;
+      for (int i = 0; i <50; i++) {
+    	  if (i%2==1) {
+    		  System.out.print(i +",");
+    		  sum=sum+i;
+    		  count=count+1;
+			
+		}
+   	}
+      System.out.println();
+		System.out.println("sum of odd  " +sum);
+		System.out.println("total count " +count);
+	}
+	
+	private static void even() {
+		int sum=0,count=0;
+	      for (int i = 0; i <50; i++) {
+	    	  if (i%2==0) {
+	    		  System.out.print(i +",");
+	    		  sum=sum+i;
+	    		  count=count+1;
+				
+			}
+			
+		}
+	      System.out.println();
+			System.out.println("sum of even  " +sum);
+			System.out.println("total count  " +count);
+	}
+	public static void main(String[] args) {
+		
+		odd();
+		even();
+		
+	}
+
+}
+----------------------------------------------------------------------------------------------------------------------
+18.PALINDROME:
+-------------
+  private static void noofpalindrome() {
+    	   int c=0;
+    	   System.out.println("palindrome num are:" );
+           for (int i = 1; i < 500; i++) {
+        	   int j=0;
+        	   int a;
+        	  int n=i;
+        	  int k =n;
+        	   while (k>0) {
+        		   a=k%10;
+        		   j=(j*10)+a;
+        		   k=k/10;
+				}
+        	   if (n==j) {
+        		  System.out.print(n + ",");
+				c=c+1;
+			}
+        	  
+			}
+           System.out.println();
+           System.out.println("count:" +c);
+	}
+       public static void main(String[] args) {
+//		reverse();
+//		palindrome();
+		noofpalindrome();
+	}
+------------------------------------------------------------------------------------------------------------------------------------------
+19.PRIME:
+-------
+public class Prime {
+	
+	public static void main(String[] args) {
+		int count=0;
+		for (int i = 2; i < 100; i++) {
+			boolean istrue = true;
+			
+			for (int j = 2; j < i; j++) {
+				if (i%j==0) {
+					istrue= false;
+					break;
+				}
+			}
+			if (istrue) {
+				System.out.print(i+",");
+				count = count+1;
+			}
+		}
+		System.out.println();
+		System.out.println("no of prime numbers:" +count);
+	}
+
+}
+---------------------------------------------------------------------------------------------------------------------------------------------
+20.REVERSE STRING:
+----------------
+public class Reversestring {
+	public static void main(String[] args) {
+		 String s ="welcome";
+		 String a = " ";
+		 for (int i = s.length()-1; i>=0; i--) {
+			a=a+s.charAt(i);
+		}
+		 System.out.println(a);
+	}
+
+}
+----------------------------------------------------------------------------------------------------------------------------------------
+21.ROMAN TO INTEGER:
+-------------------
+import java.util.HashMap;
+import java.util.Map;
+
+public class Romantointeger {
+         public static void main(String[] args) {
+			String s ="MDI";
+        	 Map<Character,Integer> m = new HashMap<>();
+        	 m.put('I', 1);
+        	 m.put('V', 5);
+        	 m.put('X', 10);
+        	 m.put('L', 50);
+        	 m.put('C', 100);
+        	 m.put('D', 500);
+        	 m.put('M', 1000);
+        		
+        	 int result =0;
+        	 
+        	 
+        	 for (int i = 0; i < s.length()-1; i++) {
+				if (m.get(s.charAt(i))>= m.get(s.charAt(i+1))) {
+					result = result + m.get(s.charAt(i));
+					
+				}
+				else {
+					result = result -m.get(s.charAt(i));
+				}
+			}
+        	 
+        	 
+        	 result = result +m.get(s.charAt(s.length()-1));
+        	 
+        	 System.out.println(result);
+		}
+}
+-----------------------------------------------------------------------------------------------------------------------------------
+22.SWAPPING:
+-----------
+public class Swap {
+	
+	private static void withoutthird(int a,int b) {
+        
+		
+		a=a+b;
+		b=a-b;
+		a=a-b;
+		
+		System.out.println(a);
+		System.out.println(b);
+		
+	}
+
+	private static void withvar(int a , int b) {
+ 
+		int temp = a;
+		a=b;
+		b=temp;
+		
+		System.out.println(a);
+		System.out.println(b);
+		
+		
+	}
+	public static void main(String[] args) {
+		withoutthird(12, 24);
+		withvar(34, 45);
+	} 
+	
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+23.NUMBER OF TIMES WORD REPEATED AND PRINTING THE REPEATEDS:
+----------------------------------------------------------
+public class Stringrepeated {
+	public static void main(String[] args) {
+		String s = "welcome god god god here here here where";
+		String[] a = s.split(" ");
+		int b []=new int[a.length];	
+	    for (int i = 0; i < a.length; i++) {
+	    	int count =1;
+	    	for (int j = i+1; j < a.length; j++) {
+				if (a[i].equals(a[j])) {
+					count++;
+					b[j]=-1;
+				}
+	    	}
+	    	if (b[i]!=-1) {
+				b[i]=count;
+			}
+		}	
+	    int dup =0;
+	    String c[] = new String[b.length];
+	    int j=0;
+	    for (int i = 0; i < b.length; i++) {
+			if (b[i]>1) {
+				dup=dup+1;
+				System.out.println(a[i]+" ocuured "+b[i]+" times ");
+				c[j]=a[i];
+				j++;
+			}
+		}
+	     System.out.println("no of duplicates: "+dup);
+	    System.out.println("duplicates words are: ");
+	    for (int i = 0; i < c.length; i++) {
+	    	if (c[i]!=null) {
+				System.out.print(c[i]+ ",");
+			}
+		}
+	 }
+  }
+---------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
